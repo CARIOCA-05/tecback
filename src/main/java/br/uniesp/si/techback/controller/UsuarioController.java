@@ -2,7 +2,9 @@ package br.uniesp.si.techback.controller;
 
 
 import br.uniesp.si.techback.model.Filme;
+import br.uniesp.si.techback.model.Usuario;
 import br.uniesp.si.techback.service.FilmeService;
+import br.uniesp.si.techback.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,23 +12,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/filmes")
-public class FilmeController {
+@RequestMapping("/usuarios")
+public class UsuarioController {
 
     @Autowired //Iremos remover essa anotação na próxma aula
-    private FilmeService service;
+    private UsuarioService service;
 
     @GetMapping
-    public List<Filme> listar(){
+    public List<Usuario> listar(){
         return service.listar();
     }
 
     @PostMapping
-    public Filme incluir(@RequestBody Filme filme){
-        return service.incluir(filme);
+    public Usuario incluir(@RequestBody Usuario usuario){
+        return service.cadastrar(usuario);
     }
     @PutMapping
-    public Filme alterar(@RequestBody Filme filme){return service.alterar(filme);}
+    public Usuario alterar(@RequestBody Usuario usuario){return service.alterar(usuario);}
     @DeleteMapping("/{id}")
     public ResponseEntity delete (@PathVariable Integer id){
         service.excluir(id);
